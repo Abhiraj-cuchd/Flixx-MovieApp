@@ -1,0 +1,9 @@
+{
+
+    "window.zoomLevel":1.6,
+    "files.autoSave" :	"afterDelay",
+    "editor.autoIndent"	: "keep",
+    "editor.fontFamily" :	"Ubuntu Mono",
+    "editor.fontSize" : 17
+
+}	
