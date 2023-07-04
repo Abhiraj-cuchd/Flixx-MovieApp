@@ -1,0 +1,5 @@
+api key = 567907a51eafa30dd1248a3b501c48c7
+
+api token = eyJhbGciOiJIUzI1NiJ9
+
+eyJhdWQiOiI1Njc5MDdhNTFlYWZhMzBkZDEyNDhhM2I1MDFjNDhjNyIsInN1YiI6IjY0OWVjNDU4M2U2ZjJiMDBlMmRlMGFmNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Cmrds0wl__2mj_hlwNvTa14BZodygKg6HkjwXSv18w

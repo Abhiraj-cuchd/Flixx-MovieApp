@@ -4,6 +4,7 @@
     "files.autoSave" :	"afterDelay",
     "editor.autoIndent"	: "keep",
     "editor.fontFamily" :	"Ubuntu Mono",
-    "editor.fontSize" : 17
+    "editor.fontSize" : 17,
+    "editor.wordWrap": "bounded"
 
 }	
