@@ -28,7 +28,7 @@ const displayPopularMovies = async () => {
             </p>
           </div>
         </div>`;
-    console.log(results);
+        console.log(results);
         document.getElementById('popular-movies').appendChild(div);
        
     });
