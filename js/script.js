@@ -1,5 +1,15 @@
 const global = {
-  currentPage: window.location.pathname
+  currentPage: window.location.pathname,
+  search: {
+    term: "",
+    type: "",
+    page: 1,
+    totalPages: 1
+  },
+  api: {
+    apiKey: '567907a51eafa30dd1248a3b501c48c7',
+    apiUrl: 'https://api.themoviedb.org/3/'
+  }
 }
 
 const displayPopularMovies = async () => {
@@ -93,6 +103,15 @@ const displayBackgroundImage = async (type, backgroundPath) => {
 
 const addCommasToNumber = (number) => {
   return number.toString().replace(/\B(?=(\d{3}) + (?!\d))/g, ',');
+}
+
+const showAlert = (message, className) => {
+  const aleretEl = document.createElement('div');
+  aleretEl.classList.add('alert', className);
+  aleretEl.appendChild(document.createTextNode(message));
+  document.querySelector('#alert').appendChild(aleretEl);
+
+  setTimeout(() => aleretEl.remove(), 2000);
 }
 
 //Display movie details
@@ -257,16 +276,50 @@ const initSwiper = () => {
 
 }
 
+//Search Movies and Shows
+const search = async () => {
+  const queryString = window.location.search;
+  console.log(queryString)
+
+  const urlParams = new URLSearchParams(queryString);
+  global.search.type = urlParams.get('type');
+  global.search.term = urlParams.get('search-term');
+
+  if(global.search.term !== '' && global.search.term !== null) {
+    // @ todo: make request and display results
+    const results = await searchApiData();
+    console.log(results);
+  } else {
+  showAlert("Please enter a search term");
+  }
+}
+
 
 
 //Fetching Data from TMDB API
 const fetchApiData = async (endpoint) => {
-  const API_KEY = '567907a51eafa30dd1248a3b501c48c7';
-  const API_URL = 'https://api.themoviedb.org/3/';
+  const API_KEY = global.api.apiKey;
+  const API_URL = global.api.apiUrl;
 
   showSpinner();
 
   const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
+
+  const data = await response.json();
+
+  hideSpinner();
+
+  return data;
+}
+
+//Fetching Search api Data
+const searchApiData = async (endpoint) => {
+  const API_KEY = global.api.apiKey;
+  const API_URL = global.api.apiUrl;
+
+  showSpinner();
+
+  const response = await fetch(`${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}`);
 
   const data = await response.json();
 
@@ -313,7 +366,7 @@ const init = () => {
       displayTvShowDetails();
       break;
     case '/search.html':
-      console.log('Search');
+      search();
       break;
   }
 
